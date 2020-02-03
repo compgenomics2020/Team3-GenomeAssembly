@@ -22,7 +22,9 @@ Fastp (v 0.20.0)
 |MaSuRCA |  3.3.5   |
 |SPAdes  |  3.14.0  |
 |SKESA   |  2.3.0   |
-|*StriDe*|  v.1.0   | *optional*
+|*StriDe*|  v.1.0   | 
+
+*optional*
 
 ## Assembly Quality
 
