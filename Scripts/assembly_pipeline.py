@@ -4,8 +4,6 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('data_directory', type = str, help = 'path to raw data')
-parser.add_argument('trimmed_directory', type = str, help = 'path to place trimmed fastq files')
-parser.add_argument('reports_directory', type = str, help = 'path to place quality control reports')
 
 parser.add_argument('--html', action='store_true', help = 'write html output')
 
@@ -24,14 +22,16 @@ args = parser.parse_args()
 -j - path to json QC report
 '''
 
+######### FASTP ARGS
+
 for filename in os.listdir(args.data_directory):
     if filename.endswith('1.fq.gz'):
         id = filename[:-8]
         arg_list = ['fastp', 
         '-i', args.data_directory + '/' + id + '_1.fq.gz', 
         '-I', args.data_directory + '/' + id + '_2.fq.gz', 
-        '-o', '{}/{}_r1.fq'.format(args.trimmed_directory, id),
-        '-O', '{}/{}_r2.fq'.format(args.trimmed_directory, id),
+        '-o', '{}/{}_r1.fq'.format('/home/projects/group-c/Team3-GenomeAssembly/2.trimmedReads/pipeline', id),
+        '-O', '{}/{}_r2.fq'.format('/home/projects/group-c/Team3-GenomeAssembly/2.trimmedReads/pipeline', id),
         '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '3', '-M', '27',
         '-j', '{}/{}_fastp.json'.format('/home/projects/group-c/Team3-GenomeAssembly/1.readQC/pipeline', id)] 
 
