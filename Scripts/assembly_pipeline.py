@@ -33,11 +33,11 @@ for filename in os.listdir(args.data_directory):
         '-o', '{}/{}_r1.fq'.format(args.trimmed_directory, id),
         '-O', '{}/{}_r2.fq'.format(args.trimmed_directory, id),
         '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '3', '-M', '27',
-        '-j', '{}/{}_fastp.json'.format(args.reports_directory, id)] 
+        '-j', '{}/{}_fastp.json'.format('/home/projects/group-c/Team3-GenomeAssembly/1.readQC/pipeline', id)] 
 
         if args.html == True:
             arg_list.append('-h')
-            arg_list.append('{}/{}_fastp.html'.format(args.reports_directory, id))
+            arg_list.append('{}/{}_fastp.html'.format('/home/projects/group-c/Team3-GenomeAssembly/2.trimmedReads/pipeline', id))
     subprocess.call(arg_list)
 
 '''
