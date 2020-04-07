@@ -58,4 +58,4 @@ idlist=samples.split()
 ######### PLASMIDSPADES
 
 for id in idlist:
-    subprocess.run("spades.py --plasmid --careful -o /home/projects/group-c/Team3-GenomeAssembly/plasmidSpades/"+id[:-1]+" --pe1-1 "+ trimmed_dir +id+"r1.f* --pe1-2 "+ trimmed_dir +id+"r2.f*", shell=True)
+    subprocess.run("spades.py --plasmid --careful -o /home/projects/group-c/Team3-GenomeAssembly/plasmidSpades/"+id[:-1]+" --pe1-1 "+ trimmed_dir + '/' +id+ "r1.f* --pe1-2 "+ trimmed_dir + '/' +id+"r2.f*", shell=True)
