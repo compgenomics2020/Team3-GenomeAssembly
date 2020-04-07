@@ -22,7 +22,7 @@ assembly_dir = '/home/projects/group-c/Team3-GenomeAssembly/3.assembledContigs/p
 
 # assumptions about input files: all of the input files are contained in a single directory
 # all of the files are .fq.gz files, samples have numerical ids
-# read one: _1.fq.gz, read two: _2.fq.gz
+# read one: _1.f*, read two: _2.f*
 
 # load fastq files into fastp
 def run_fastp(raw_dir, fastp_dir, trimmed_dir, html = False):
@@ -31,12 +31,11 @@ def run_fastp(raw_dir, fastp_dir, trimmed_dir, html = False):
     subprocess.call(['rm', '-rf', fastp_dir, trimmed_dir])
     subprocess.call(['mkdir', fastp_dir, trimmed_dir])
 
-    for filename in os.listdir(raw_dir):
-        if filename.endswith('1.fq.gz'):
-            id = filename[:-8]
+    for filename in glob.glob(raw_dir + '/*1.f*'):
+            id = filename[len(raw_dir):filename.find('.') - 2]
             arg_list = ['fastp', 
-            '-i', raw_dir + '/' + id + '_1.fq.gz', 
-            '-I', raw_dir + '/' + id + '_2.fq.gz', 
+            '-i', filename, 
+            '-I', glob.glob('{}*{}*2'.format(raw_dir, id))[0]
             '-o', '{}/{}_r1.fq'.format(trimmed_dir, id),
             '-O', '{}/{}_r2.fq'.format(trimmed_dir, id),
             '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '5', '-M', '27',
