@@ -1,6 +1,6 @@
 ##Final script for Genome Assembly Team
 
-import os
+import glob
 import subprocess
 import argparse
 
@@ -25,13 +25,13 @@ assembly_dir = '/home/projects/group-c/Team3-GenomeAssembly/3.assembledContigs/p
 # read one: _1.fq.gz, read two: _2.fq.gz
 
 # load fastq files into fastp
-def run_fastp(raw_dir, fastp_dir, trimmed_dir):
+def run_fastp(raw_dir, fastp_dir, trimmed_dir, html = False):
 
     # deleting previous directories, make new ones
     subprocess.call(['rm', '-rf', fastp_dir, trimmed_dir])
     subprocess.call(['mkdir', fastp_dir, trimmed_dir])
 
-    for filename in os.listdir(raw_dir, html = False):
+    for filename in os.listdir(raw_dir):
         if filename.endswith('1.fq.gz'):
             id = filename[:-8]
             arg_list = ['fastp', 
