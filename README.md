@@ -2,6 +2,14 @@
 
 This is a pipeline for assembling *Listeria monocytogenes* genomes. 
 
+## Usage
+
+```
+python assembly_pipeline.py /home/projects/group-c/data
+```
+
+The assembly_pipeline.py script takes in a single parameter, data_directory, which is a path to the raw data. We assume that all of the input files are contained in a single directory, which contains only .fq.gz files. We further assume that the read 1 and read 2 files for each sample start with the same sample ID, and the read 1 files end with '_1.fq.gz' and the read 2 files end with '_2.fq.gz'. 
+
 ## Quality Control and Trimming
 
 * Fastp (v 0.20.0)
@@ -15,7 +23,7 @@ The output of the quality control step of the pipeline is a PDF report generated
 
 ### Trimming Parameters
 
-The following arguments were supplied to fastp in order to trim our data: -f 5 -F 30 -t 10 -e 28 -c -5 3 -M 27.
+The following arguments were supplied to fastp in order to trim our data: `-f 5 -F 30 -t 10 -e 28 -c -5 3 -M 27`.
 
 * -f 5 - globally trims 5 bases from 5' end of mate 1
 * -F 30 - globally trims 30 bases from 5' end of mate 2
