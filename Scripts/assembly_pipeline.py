@@ -25,6 +25,8 @@ subprocess.call(['mkdir', fastp_dir, trimmed_dir])
 # assumptions about input files: all of the input files are contained in a single directory
 # all of the files are .fq.gz files, samples have numerical ids
 # read one: _1.fq.gz, read two: _2.fq.gz
+
+# load fastq files into fastp
 for filename in os.listdir(args.data_directory):
     if filename.endswith('1.fq.gz'):
         id = filename[:-8]
@@ -36,6 +38,7 @@ for filename in os.listdir(args.data_directory):
         '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '5', '-M', '27',
         '-j', '{}/{}_fastp.json'.format(fastp_dir, id)] 
 
+        # if you want html reports for each sample, we can do that. but why would we?
         if args.html == True:
             arg_list.append('-h')
             arg_list.append('{}/{}_fastp.html'.format(fastp_dir, id))
@@ -55,4 +58,4 @@ idlist=samples.split()
 ######### PLASMIDSPADES
 
 for id in idlist:
-    subprocess.run("spades.py --plasmid --careful -o /home/projects/group-c/Team3-GenomeAssembly/plasmidSpades/"+id[:-1]+" --pe1-1 "+args.folderlocation+id+"r1.f* --pe1-2 "+args.folderlocation+id+"r2.f*", shell=True)
+    subprocess.run("spades.py --plasmid --careful -o /home/projects/group-c/Team3-GenomeAssembly/plasmidSpades/"+id[:-1]+" --pe1-1 "+ trimmed_dir +id+"r1.f* --pe1-2 "+ trimmed_dir +id+"r2.f*", shell=True)
