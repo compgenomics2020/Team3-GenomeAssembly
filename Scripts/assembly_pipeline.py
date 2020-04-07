@@ -32,19 +32,19 @@ def run_fastp(raw_dir, fastp_dir, trimmed_dir, html = False):
     subprocess.call(['mkdir', fastp_dir, trimmed_dir])
 
     for filename in glob.glob(raw_dir + '/*1.f*'):
-            id = filename[len(raw_dir):filename.find('.') - 2]
-            arg_list = ['fastp', 
+        id = filename[len(raw_dir):filename.find('.') - 2]
+        arg_list = ['fastp', 
             '-i', filename, 
-            '-I', glob.glob('{}*{}*2'.format(raw_dir, id))[0]
+            '-I', glob.glob('{}*{}*2*'.format(raw_dir, id))[0],
             '-o', '{}/{}_r1.fq'.format(trimmed_dir, id),
             '-O', '{}/{}_r2.fq'.format(trimmed_dir, id),
             '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '5', '-M', '27',
             '-j', '{}/{}_fastp.json'.format(fastp_dir, id)] 
 
             # if you want html reports for each sample, we can do that. but why would we?
-            if html == True:
-                arg_list.append('-h')
-                arg_list.append('{}/{}_fastp.html'.format(fastp_dir, id))
+        if html == True:
+            arg_list.append('-h')
+            arg_list.append('{}/{}_fastp.html'.format(fastp_dir, id))
         subprocess.call(arg_list)
 
 ######### MULTIQC
