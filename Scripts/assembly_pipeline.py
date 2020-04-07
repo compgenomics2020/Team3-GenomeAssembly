@@ -76,4 +76,9 @@ def main():
     # run_multiqc(fastp_dir)
     run_plasmidspades(trimmed_dir, assembly_dir)
 
+<<<<<<< HEAD
 main()
+=======
+for id in idlist:
+    subprocess.run("spades.py --plasmid --careful -o /home/projects/group-c/Team3-GenomeAssembly/plasmidSpades/"+id[:-1]+" --pe1-1 "+ trimmed_dir + '/' +id+ "r1.f* --pe1-2 "+ trimmed_dir + '/' +id+"r2.f*", shell=True)
+>>>>>>> 86911b927bca5d955bcabf9d0816afa91c37f2c2
