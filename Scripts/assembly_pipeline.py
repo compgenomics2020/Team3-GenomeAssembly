@@ -70,8 +70,8 @@ def run_plasmidspades(trimmed_dir, assembly_dir):
         subprocess.call(['spades.py', '--plasmid', '--careful', '-o', id_dir, '--pe1-1', '{}/{}r1.fq'.format(trimmed_dir, id), '--pe1-2', '{}/{}r2.fq'.format(trimmed_dir, id)])
 
 def main():
-    # run_fastp(raw_dir, fastp_dir, trimmed_dir)
-    # run_multiqc(fastp_dir)
+    run_fastp(raw_dir, fastp_dir, trimmed_dir)
+    run_multiqc(fastp_dir)
     run_plasmidspades(trimmed_dir, assembly_dir)
 
 main()
