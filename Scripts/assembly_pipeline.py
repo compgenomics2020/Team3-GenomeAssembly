@@ -19,15 +19,15 @@ fastp_dir = '/home/projects/group-c/Team3-GenomeAssembly/1.readQC/pipeline_temp'
 trimmed_dir = '/home/projects/group-c/Team3-GenomeAssembly/2.trimmedReads/pipeline_temp'
 
 # deleting previous directories, make new ones
-subprocess.call(['rm', '-rf', fastp_dir, trimmed_dir])
-subprocess.call(['mkdir', fastp_dir, trimmed_dir])
+""" subprocess.call(['rm', '-rf', fastp_dir, trimmed_dir])
+subprocess.call(['mkdir', fastp_dir, trimmed_dir]) """
 
 # assumptions about input files: all of the input files are contained in a single directory
 # all of the files are .fq.gz files, samples have numerical ids
 # read one: _1.fq.gz, read two: _2.fq.gz
 
 # load fastq files into fastp
-for filename in os.listdir(args.data_directory):
+""" for filename in os.listdir(args.data_directory):
     if filename.endswith('1.fq.gz'):
         id = filename[:-8]
         arg_list = ['fastp', 
@@ -42,13 +42,13 @@ for filename in os.listdir(args.data_directory):
         if args.html == True:
             arg_list.append('-h')
             arg_list.append('{}/{}_fastp.html'.format(fastp_dir, id))
-    subprocess.call(arg_list)
+    subprocess.call(arg_list) """
 
 ######### MULTIQC
 
 # output: multiqc report, fastp_dir + 'multiqc_report.html'
 # '/home/projects/group-c/Team3-GenomeAssembly/1.readQC/pipeline_temp/multiqc_report.html'
-subprocess.call(['multiqc', fastp_dir, '-o', fastp_dir])
+""" subprocess.call(['multiqc', fastp_dir, '-o', fastp_dir]) """
 
 ################## ASSEMBLY
 
