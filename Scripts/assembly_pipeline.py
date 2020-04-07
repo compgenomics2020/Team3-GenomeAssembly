@@ -43,7 +43,7 @@ for filename in os.listdir(args.data_directory):
 
 ######### MULTIQC
 
-# path to multiqc report: fastp_dir + multiqc_report.html
+# output: multiqc report, fastp_dir + 'multiqc_report.html'
 # '/home/projects/group-c/Team3-GenomeAssembly/1.readQC/pipeline_temp/multiqc_report.html'
 subprocess.call(['multiqc', fastp_dir, '-o', fastp_dir])
 
