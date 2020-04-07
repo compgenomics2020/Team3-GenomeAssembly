@@ -4,11 +4,11 @@ import os
 import subprocess
 import argparse
 
-parser = argparse.ArgumentParser()
+""" parser = argparse.ArgumentParser()
 parser.add_argument('data_directory', type = str, help = 'path to raw data')
 parser.add_argument('--html', action='store_true', help = 'write html output')
 
-args = parser.parse_args() 
+args = parser.parse_args()  """
 
 ################## QUALITY CONTROL
 
@@ -36,15 +36,15 @@ def run_fastp(raw_dir, fastp_dir, trimmed_dir):
         if filename.endswith('1.fq.gz'):
             id = filename[:-8]
             arg_list = ['fastp', 
-            '-i', args.data_directory + '/' + id + '_1.fq.gz', 
-            '-I', args.data_directory + '/' + id + '_2.fq.gz', 
+            '-i', raw_dir + '/' + id + '_1.fq.gz', 
+            '-I', raw_dir + '/' + id + '_2.fq.gz', 
             '-o', '{}/{}_r1.fq'.format(trimmed_dir, id),
             '-O', '{}/{}_r2.fq'.format(trimmed_dir, id),
             '-f', '5', '-F', '30', '-t', '10', '-e', '28', '-c', '-5', '5', '-M', '27',
             '-j', '{}/{}_fastp.json'.format(fastp_dir, id)] 
 
             # if you want html reports for each sample, we can do that. but why would we?
-            if args.html == True:
+            if html == True:
                 arg_list.append('-h')
                 arg_list.append('{}/{}_fastp.html'.format(fastp_dir, id))
         subprocess.call(arg_list)
