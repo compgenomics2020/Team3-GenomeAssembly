@@ -8,7 +8,7 @@ This is a pipeline for assembling *Listeria monocytogenes* genomes.
 python assembly_pipeline.py /home/projects/group-c/data
 ```
 
-The assembly_pipeline.py script takes in a single parameter, data_directory, which is a path to the raw fastq data. We assume that all of the input files are contained in a single directory, which contains only .fq.gz files. We further assume that the read 1 and read 2 files for each sample start with the same sample ID, and the read 1 files end with '_1.fq.gz' and the read 2 files end with '_2.fq.gz'. 
+The assembly_pipeline.py script takes in a single parameter, data_directory, which is a path to the raw fastq data. We assume that the input directory contains files that fit the pattern `*.f*`. We further assume that the read 1 and read 2 files for each sample start with the same sample ID, and the read 1 files end with `*1.f*` and the read 2 files end with `*2.f*`. 
 
 ## Quality Control and Trimming
 

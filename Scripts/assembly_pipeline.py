@@ -21,7 +21,7 @@ trimmed_dir = '/home/projects/group-c/Team3-GenomeAssembly/2.trimmedReads/pipeli
 assembly_dir = '/home/projects/group-c/Team3-GenomeAssembly/3.assembledContigs/plasmidSpades/pipeline_temp'
 
 # assumptions about input files: all of the input files are contained in a single directory
-# all of the files are .fq.gz files, samples have numerical ids
+# all of the files fit the pattern *.f*, both of the reads for the sample share a sample id
 # read one: _1.f*, read two: _2.f*
 
 # load fastq files into fastp
