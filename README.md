@@ -35,6 +35,9 @@ The following arguments were supplied to fastp in order to trim our data: `-f 5 
 
 ## Genome Assembly
 
+SPAdes (v3.13.0)
+* -careful - tries to reduce the number of mismatches and short indels
+
 ### Tools Benchmarked
 
 |Tools   | version  |
