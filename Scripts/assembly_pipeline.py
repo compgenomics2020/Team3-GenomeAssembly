@@ -58,13 +58,13 @@ def run_multiqc(fastp_dir):
 
 ################## GENOME ASSEMBLY
 
-def run_spades(trimmed_dir):
+def run_spades(trimmed_dir, assembly_dir):
     samples = subprocess.check_output("ls " + trimmed_dir + " | grep -o '^.*_' | uniq", shell=True, universal_newlines=True)
     idlist = samples.split()
 
     for id in idlist:
         # delete previous temporary directories, make new temporary directories
-        id_dir = passembly_dir + '/' + id[:-1]
+        id_dir = assembly_dir + '/' + id[:-1]
         subprocess.call(['rm', '-rf', id_dir])
         subprocess.call(['mkdir', id_dir])
 
