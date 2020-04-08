@@ -58,8 +58,20 @@ def run_multiqc(fastp_dir):
 
 ################## GENOME ASSEMBLY
 
+def run_spades(trimmed_dir):
+    samples = subprocess.check_output("ls " + trimmed_dir + " | grep -o '^.*_' | uniq", shell=True, universal_newlines=True)
+    idlist = samples.split()
 
+    for id in idlist:
+        # delete previous temporary directories, make new temporary directories
+        id_dir = passembly_dir + '/' + id[:-1]
+        subprocess.call(['rm', '-rf', id_dir])
+        subprocess.call(['mkdir', id_dir])
 
+        # run plasmid spades
+        subprocess.call(
+            ['spades.py', '--careful', '-o', id_dir, '--pe1-1', '{}/{}r1.fq'.format(trimmed_dir, id),
+             '--pe1-2', '{}/{}r2.fq'.format(trimmed_dir, id)])
 
 
 ################## PLASMID ASSEMBLY
