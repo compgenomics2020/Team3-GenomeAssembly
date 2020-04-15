@@ -4,11 +4,12 @@ import glob
 import subprocess
 import argparse
 
-""" parser = argparse.ArgumentParser()
-parser.add_argument('data_directory', type = str, help = 'path to raw data')
+parser = argparse.ArgumentParser()
+parser.add_argument("-a","--assembler",help = "Choose the assembler to use. Options: SPADES, SKESA. Default SPADES.")
+parser.add_argument('-i','--input_data_directory', type = str, help = 'path to raw data')
 parser.add_argument('--html', action='store_true', help = 'write html output')
 
-args = parser.parse_args()  """
+args = parser.parse_args()
 
 ################## QUALITY CONTROL
 
@@ -73,6 +74,21 @@ def run_spades(trimmed_dir, assembly_dir):
             ['spades.py', '--careful', '-o', id_dir, '--pe1-1', '{}/{}r1.fq'.format(trimmed_dir, id),
              '--pe1-2', '{}/{}r2.fq'.format(trimmed_dir, id)])
 
+def run_skesa(trimmed_dir, assembly_dir):
+    samples = subprocess.check_output("ls " + trimmed_dir + " | grep -o '^.*_' | uniq", shell=True, universal_newlines=True)
+    idlist = samples.split()
+
+    for ii in idlist:
+        # delete previous temporary directories, make new temporary directories
+        id_dir = assembly_dir + '/' + ii[:-1]
+        subprocess.call(['rm', '-rf', id_dir])
+        subprocess.call(['mkdir', id_dir])
+
+        sample1 = trimmed_dir+'/'+ii+'r1.fq'
+        sample2 = trimmed_dir+'/'+ii+'r2.fq'
+        #output = assembly_dir+'/'+idlist[ii]+'skesa.fa'
+        command = ['skesa', '--fastq', sample1, sample2, '--contigs_out', id_dir+'/contigs.fasta']
+        subprocess.call(command)
 
 ################## PLASMID ASSEMBLY
 
@@ -113,6 +129,10 @@ def run_assemblyquality(assembly_dir,quality_dir):
 def main():
     run_fastp(raw_dir, fastp_dir, trimmed_dir)
     run_multiqc(fastp_dir)
+    if args.assembler = "SKESA":
+        run_skesa(trimmed_dir, assembly_dir)
+    else:
+        run_spades(trimmed_dir, assembly_dir)
     run_plasmidspades(trimmed_dir, assembly_dir)
     run_assemblyquality(assembly_dir, quality_dir)
 
