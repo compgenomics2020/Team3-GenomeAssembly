@@ -5,7 +5,12 @@ This is a pipeline for assembling *Listeria monocytogenes* genomes.
 ## Usage
 
 ```
-python assembly_pipeline.py /home/projects/group-c/data
+python assembly_pipeline.py -i /home/projects/group-c/data -a SPADES
+```
+```
+-a: --assembler. Choose the assembler to use: SPADES or SKESA. Default SPADES.
+-i: --input_data_directory. Path to raw data.
+--html: Output HTML reports in fastp.
 ```
 
 The assembly_pipeline.py script takes in a single parameter, data_directory, which is a path to the raw fastq data. We assume that the input directory contains files that fit the pattern `*.f*`. We further assume that the read 1 and read 2 files for each sample start with the same sample ID, and the read 1 files end with `*1.f*` and the read 2 files end with `*2.f*`. 
@@ -37,6 +42,9 @@ The following arguments were supplied to fastp in order to trim our data: `-f 5 
 
 SPAdes (v3.13.0)
 * -careful - tries to reduce the number of mismatches and short indels
+
+SKESA (v2.3.0)
+Uses default setting.
 
 ### Tools Benchmarked
 
