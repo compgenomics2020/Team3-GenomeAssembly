@@ -123,17 +123,17 @@ def run_assemblyquality(assembly_dir,quality_dir):
         subprocess.call(['mkdir',quality_dir, '/Busco/',id])
         subprocess.call('busco -m Genome -i '+assembly_dir+'/'+id+' -l bacteria_odb10 -o '+quality_dir+'/Busco/'+id, shell = True, universal_newlines=True)    
 
-    subprocess.call('quast '+qualitydir+'/assemblyfiles/* -o '+quality_dir+'/quast/ --circos', shell=True, universal_newlines=True)
+    subprocess.call('quast '+quality_dir+'/assemblyfiles/* -o '+quality_dir+'/quast/ --circos', shell=True, universal_newlines=True)
     
 
 def main():
     run_fastp(raw_dir, fastp_dir, trimmed_dir)
     run_multiqc(fastp_dir)
-    if args.assembler = "SKESA":
+    if args.assembler == "SKESA":
         run_skesa(trimmed_dir, assembly_dir)
     else:
         run_spades(trimmed_dir, assembly_dir)
-    run_plasmidspades(trimmed_dir, assembly_dir)
+    run_plasmidspades(trimmed_dir, passembly_dir)
     run_assemblyquality(assembly_dir, quality_dir)
 
 main()
