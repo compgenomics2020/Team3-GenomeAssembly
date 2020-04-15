@@ -44,7 +44,7 @@ SPAdes (v3.13.0)
 * -careful - tries to reduce the number of mismatches and short indels
 
 SKESA (v2.3.0)
-Uses default setting.
+* -Uses default setting.
 
 ### Tools Benchmarked
 
