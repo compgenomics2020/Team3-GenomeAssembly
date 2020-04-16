@@ -46,23 +46,18 @@ SPAdes (v3.13.0)
 SKESA (v2.3.0)
 * -Uses default setting.
 
-### Tools Benchmarked
+## Plasmid Assembly
 
-|Tools   | version  |
-|--------|----------| 
-|Abyss   |  2.2.4   |
-|MaSuRCA |  3.3.5   |
-|SPAdes  |  3.14.0  |
-|SKESA   |  2.3.0   |
-|*StriDe*|  v.1.0   | 
-
-*optional*
+plasmidSPAdes (v3.13.0)
+* generates plasmid assembly using --plasmid flag from SPAdes by default
 
 ## Assembly Quality
 
 Quast (v5.0.2)
+* Generates a combined quality report forN50 Quality metrics using Quast and generates a combined tsv file for all the samples as well as html files for easy viewing. 
 
 BUSCO (v3.0.2)
+* Generates Completeness score by benchmarking Universal Single Copy Orthologs with breaking it down in Single copy BUSCOs, double copy BUSCOs, missing and fragmented BUSCOs for each sample
 
 ## Authors
 
