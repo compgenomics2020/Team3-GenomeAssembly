@@ -56,7 +56,7 @@ plasmidSPAdes (v3.13.0)
 Quast (v5.0.2)
 * Generates a combined quality report forN50 Quality metrics using Quast and generates a combined tsv file for all the samples as well as html files for easy viewing. 
 
-BUSCO (v3.0.2)
+BUSCO (v4.0.2)
 * Generates Completeness score by benchmarking Universal Single Copy Orthologs with breaking it down in Single copy BUSCOs, double copy BUSCOs, missing and fragmented BUSCOs for each sample
 
 ## Authors
